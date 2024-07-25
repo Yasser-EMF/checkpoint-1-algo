@@ -1,0 +1,26 @@
+PROCEDURE countSentenceStats(VAR sentence : STRING; VAR length, wordCount, vowelCount : INTEGER)
+VAR
+    i : INTEGER;
+    currentChar : CHAR;
+BEGIN
+    // Initialize variables
+    length := 0;
+    wordCount := 1;  // Assume at least one word
+    vowelCount := 0;
+
+    // Iterate through each character in the sentence
+    FOR i FROM 0 TO sentence.length - 1 STEP 1 DO
+        currentChar := sentence[i];
+        length := length + 1; // Increment length for each character
+
+        // Check for space to count words
+        IF (currentChar = ' ') THEN
+            wordCount := wordCount + 1;
+        END_IF
+
+        // Check for vowels (case-insensitive)
+        IF (currentChar IN ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']) THEN
+            vowelCount := vowelCount + 1;
+        END_IF
+    END_FOR
+END
